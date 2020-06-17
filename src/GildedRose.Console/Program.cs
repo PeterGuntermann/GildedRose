@@ -35,13 +35,16 @@ namespace GildedRose.Console
 
         public void UpdateQuality()
         {
+            const int minQuality = 0;
+            const int maxQuality = 50;
+
             for (var i = 0; i < Items.Count; i++)
             {
                 var item = Items[i];
-                
+
                 if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
                 {
-                    if (item.Quality > 0)
+                    if (item.Quality > minQuality)
                     {
                         if (item.Name != "Sulfuras, Hand of Ragnaros")
                         {
@@ -51,7 +54,7 @@ namespace GildedRose.Console
                 }
                 else
                 {
-                    if (item.Quality < 50)
+                    if (item.Quality < maxQuality)
                     {
                         item.Quality = item.Quality + 1;
 
@@ -59,7 +62,7 @@ namespace GildedRose.Console
                         {
                             if (item.SellIn < 11)
                             {
-                                if (item.Quality < 50)
+                                if (item.Quality < maxQuality)
                                 {
                                     item.Quality = item.Quality + 1;
                                 }
@@ -67,7 +70,7 @@ namespace GildedRose.Console
 
                             if (item.SellIn < 6)
                             {
-                                if (item.Quality < 50)
+                                if (item.Quality < maxQuality)
                                 {
                                     item.Quality = item.Quality + 1;
                                 }
@@ -102,7 +105,7 @@ namespace GildedRose.Console
                     }
                     else
                     {
-                        if (item.Quality < 50)
+                        if (item.Quality < maxQuality)
                         {
                             item.Quality = item.Quality + 1;
                         }
