@@ -14,7 +14,7 @@ namespace GildedRose.Console
         const string DexterityVest = "+5 Dexterity Vest";
         const string ElixirOfTheMongoose = "Elixir of the Mongoose";
         const string ConjuredManaCake = "Conjured Mana Cake";
-        
+
         static void Main(string[] args)
         {
             System.Console.WriteLine("OMGHAI!");
@@ -39,10 +39,8 @@ namespace GildedRose.Console
 
         public void UpdateQuality()
         {
-            for (var i = 0; i < Items.Count; i++)
+            foreach (var item in Items)
             {
-                var item = Items[i];
-
                 if (item.Name != AgedBrie && item.Name != BackstagePassesToATafkal80etcConcert)
                 {
                     if (item.Quality > MinQuality)
