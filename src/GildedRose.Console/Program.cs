@@ -6,6 +6,15 @@ namespace GildedRose.Console
     {
         IList<Item> Items;
 
+        const int MinQuality = 0;
+        const int MaxQuality = 50;
+        const string SulfurasHandOfRagnaros = "Sulfuras, Hand of Ragnaros";
+        const string BackstagePassesToATafkal80etcConcert = "Backstage passes to a TAFKAL80ETC concert";
+        const string AgedBrie = "Aged Brie";
+        const string DexterityVest = "+5 Dexterity Vest";
+        const string ElixirOfTheMongoose = "Elixir of the Mongoose";
+        const string ConjuredManaCake = "Conjured Mana Cake";
+        
         static void Main(string[] args)
         {
             System.Console.WriteLine("OMGHAI!");
@@ -14,17 +23,12 @@ namespace GildedRose.Console
             {
                 Items = new List<Item>
                 {
-                    new Item {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20},
-                    new Item {Name = "Aged Brie", SellIn = 2, Quality = 0},
-                    new Item {Name = "Elixir of the Mongoose", SellIn = 5, Quality = 7},
-                    new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80},
-                    new Item
-                    {
-                        Name = "Backstage passes to a TAFKAL80ETC concert",
-                        SellIn = 15,
-                        Quality = 20
-                    },
-                    new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
+                    new Item {Name = DexterityVest, SellIn = 10, Quality = 20},
+                    new Item {Name = AgedBrie, SellIn = 2, Quality = 0},
+                    new Item {Name = ElixirOfTheMongoose, SellIn = 5, Quality = 7},
+                    new Item {Name = SulfurasHandOfRagnaros, SellIn = 0, Quality = 80},
+                    new Item {Name = BackstagePassesToATafkal80etcConcert, SellIn = 15, Quality = 20},
+                    new Item {Name = ConjuredManaCake, SellIn = 3, Quality = 6}
                 }
             };
 
@@ -35,18 +39,15 @@ namespace GildedRose.Console
 
         public void UpdateQuality()
         {
-            const int minQuality = 0;
-            const int maxQuality = 50;
-
             for (var i = 0; i < Items.Count; i++)
             {
                 var item = Items[i];
 
-                if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
+                if (item.Name != AgedBrie && item.Name != BackstagePassesToATafkal80etcConcert)
                 {
-                    if (item.Quality > minQuality)
+                    if (item.Quality > MinQuality)
                     {
-                        if (item.Name != "Sulfuras, Hand of Ragnaros")
+                        if (item.Name != SulfurasHandOfRagnaros)
                         {
                             item.Quality = item.Quality - 1;
                         }
@@ -54,15 +55,15 @@ namespace GildedRose.Console
                 }
                 else
                 {
-                    if (item.Quality < maxQuality)
+                    if (item.Quality < MaxQuality)
                     {
                         item.Quality = item.Quality + 1;
 
-                        if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+                        if (item.Name == BackstagePassesToATafkal80etcConcert)
                         {
                             if (item.SellIn < 11)
                             {
-                                if (item.Quality < maxQuality)
+                                if (item.Quality < MaxQuality)
                                 {
                                     item.Quality = item.Quality + 1;
                                 }
@@ -70,7 +71,7 @@ namespace GildedRose.Console
 
                             if (item.SellIn < 6)
                             {
-                                if (item.Quality < maxQuality)
+                                if (item.Quality < MaxQuality)
                                 {
                                     item.Quality = item.Quality + 1;
                                 }
@@ -79,20 +80,20 @@ namespace GildedRose.Console
                     }
                 }
 
-                if (item.Name != "Sulfuras, Hand of Ragnaros")
+                if (item.Name != SulfurasHandOfRagnaros)
                 {
                     item.SellIn = item.SellIn - 1;
                 }
 
                 if (item.SellIn < 0)
                 {
-                    if (item.Name != "Aged Brie")
+                    if (item.Name != AgedBrie)
                     {
-                        if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
+                        if (item.Name != BackstagePassesToATafkal80etcConcert)
                         {
-                            if (item.Quality > 0)
+                            if (item.Quality > MinQuality)
                             {
-                                if (item.Name != "Sulfuras, Hand of Ragnaros")
+                                if (item.Name != SulfurasHandOfRagnaros)
                                 {
                                     item.Quality = item.Quality - 1;
                                 }
@@ -105,7 +106,7 @@ namespace GildedRose.Console
                     }
                     else
                     {
-                        if (item.Quality < maxQuality)
+                        if (item.Quality < MaxQuality)
                         {
                             item.Quality = item.Quality + 1;
                         }
