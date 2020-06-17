@@ -41,14 +41,71 @@ namespace GildedRose.Console
         {
             foreach (var item in Items)
             {
-                if (item.Name != AgedBrie && item.Name != BackstagePassesToATafkal80etcConcert)
+                UpdateQualityOfItem(item);
+            }
+        }
+
+        private void UpdateQualityOfItem(Item item)
+        {
+            if (item.Name != AgedBrie && item.Name != BackstagePassesToATafkal80etcConcert)
+            {
+                if (item.Quality > MinQuality)
                 {
-                    if (item.Quality > MinQuality)
+                    if (item.Name != SulfurasHandOfRagnaros)
                     {
-                        if (item.Name != SulfurasHandOfRagnaros)
+                        item.Quality = item.Quality - 1;
+                    }
+                }
+            }
+            else
+            {
+                if (item.Quality < MaxQuality)
+                {
+                    item.Quality = item.Quality + 1;
+
+                    if (item.Name == BackstagePassesToATafkal80etcConcert)
+                    {
+                        if (item.SellIn < 11)
                         {
-                            item.Quality = item.Quality - 1;
+                            if (item.Quality < MaxQuality)
+                            {
+                                item.Quality = item.Quality + 1;
+                            }
                         }
+
+                        if (item.SellIn < 6)
+                        {
+                            if (item.Quality < MaxQuality)
+                            {
+                                item.Quality = item.Quality + 1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (item.Name != SulfurasHandOfRagnaros)
+            {
+                item.SellIn = item.SellIn - 1;
+            }
+
+            if (item.SellIn < 0)
+            {
+                if (item.Name != AgedBrie)
+                {
+                    if (item.Name != BackstagePassesToATafkal80etcConcert)
+                    {
+                        if (item.Quality > MinQuality)
+                        {
+                            if (item.Name != SulfurasHandOfRagnaros)
+                            {
+                                item.Quality = item.Quality - 1;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        item.Quality = item.Quality - item.Quality;
                     }
                 }
                 else
@@ -56,58 +113,6 @@ namespace GildedRose.Console
                     if (item.Quality < MaxQuality)
                     {
                         item.Quality = item.Quality + 1;
-
-                        if (item.Name == BackstagePassesToATafkal80etcConcert)
-                        {
-                            if (item.SellIn < 11)
-                            {
-                                if (item.Quality < MaxQuality)
-                                {
-                                    item.Quality = item.Quality + 1;
-                                }
-                            }
-
-                            if (item.SellIn < 6)
-                            {
-                                if (item.Quality < MaxQuality)
-                                {
-                                    item.Quality = item.Quality + 1;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (item.Name != SulfurasHandOfRagnaros)
-                {
-                    item.SellIn = item.SellIn - 1;
-                }
-
-                if (item.SellIn < 0)
-                {
-                    if (item.Name != AgedBrie)
-                    {
-                        if (item.Name != BackstagePassesToATafkal80etcConcert)
-                        {
-                            if (item.Quality > MinQuality)
-                            {
-                                if (item.Name != SulfurasHandOfRagnaros)
-                                {
-                                    item.Quality = item.Quality - 1;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            item.Quality = item.Quality - item.Quality;
-                        }
-                    }
-                    else
-                    {
-                        if (item.Quality < MaxQuality)
-                        {
-                            item.Quality = item.Quality + 1;
-                        }
                     }
                 }
             }
