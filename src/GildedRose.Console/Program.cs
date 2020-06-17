@@ -53,7 +53,7 @@ namespace GildedRose.Console
                 {
                     if (item.Name != SulfurasHandOfRagnaros)
                     {
-                        item.Quality = item.Quality - 1;
+                        DecreaseQuality(item);
                     }
                 }
             }
@@ -61,7 +61,7 @@ namespace GildedRose.Console
             {
                 if (item.Quality < MaxQuality)
                 {
-                    item.Quality = item.Quality + 1;
+                    IncreaseQuality(item);
 
                     if (item.Name == BackstagePassesToATafkal80etcConcert)
                     {
@@ -69,7 +69,7 @@ namespace GildedRose.Console
                         {
                             if (item.Quality < MaxQuality)
                             {
-                                item.Quality = item.Quality + 1;
+                                IncreaseQuality(item);
                             }
                         }
 
@@ -77,7 +77,7 @@ namespace GildedRose.Console
                         {
                             if (item.Quality < MaxQuality)
                             {
-                                item.Quality = item.Quality + 1;
+                                IncreaseQuality(item);
                             }
                         }
                     }
@@ -86,7 +86,7 @@ namespace GildedRose.Console
 
             if (item.Name != SulfurasHandOfRagnaros)
             {
-                item.SellIn = item.SellIn - 1;
+                DecreaseSellIn(item);
             }
 
             if (item.SellIn < 0)
@@ -99,23 +99,38 @@ namespace GildedRose.Console
                         {
                             if (item.Name != SulfurasHandOfRagnaros)
                             {
-                                item.Quality = item.Quality - 1;
+                                DecreaseQuality(item);
                             }
                         }
                     }
                     else
                     {
-                        item.Quality = item.Quality - item.Quality;
+                        DecreaseQuality(item);
                     }
                 }
                 else
                 {
                     if (item.Quality < MaxQuality)
                     {
-                        item.Quality = item.Quality + 1;
+                        IncreaseQuality(item);
                     }
                 }
             }
+        }
+
+        private void DecreaseSellIn(Item item)
+        {
+            item.SellIn = item.SellIn - 1;
+        }
+
+        private void IncreaseQuality(Item item)
+        {
+            item.Quality = item.Quality + 1;
+        }
+
+        private void DecreaseQuality(Item item)
+        {
+            item.Quality = item.Quality - 1;
         }
     }
 }
